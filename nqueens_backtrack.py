@@ -1,6 +1,3 @@
-import itertools as it
-
-
 def can_extend(perm):
     i = len(perm) - 1
     for j in range(i):
@@ -9,17 +6,23 @@ def can_extend(perm):
     return True
 
 
-def solve(perm, n):
+solutions = []
+
+
+def extract(perm, n):
     if len(perm) == n:
         print(perm)
-        return
+        solutions.append(perm)
+        # return
+        # exit()
 
     for k in range(n):
         if k not in perm:
             perm.append(k)
             if can_extend(perm):
-                solve(perm, n)
+                extract(perm, n)
             perm.pop()
 
 
-solve([], 20)
+extract([], 8)
+print(len(solutions))
